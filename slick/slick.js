@@ -45,24 +45,24 @@
                 arrows: true,
                 arrowsPlacement: null,
                 asNavFor: null,
-                prevArrow: '<button class="slick-prev" type="button">'
-                            + '<span class="slick-prev-icon" aria-hidden="true"></span>'
-                            + '<span class="slick-sr-only">Previous</span>'
-                         + '</button>',
-                nextArrow: '<button class="slick-next" type="button">'
-                            + '<span class="slick-next-icon" aria-hidden="true"></span>'
-                            + '<span class="slick-sr-only">Next</span>'
-                         + '</button>',
+                prevArrow: '<button class="slick-prev" type="button">' +
+                             '<span class="slick-prev-icon" aria-hidden="true"></span>' +
+                             '<span class="slick-sr-only">Previous</span>' +
+                           '</button>',
+                nextArrow: '<button class="slick-next" type="button">' +
+                             '<span class="slick-next-icon" aria-hidden="true"></span>' +
+                             '<span class="slick-sr-only">Next</span>' +
+                           '</button>',
                 autoplay: false,
                 autoplaySpeed: 3000,
                 centerMode: false,
                 centerPadding: '50px',
                 cssEase: 'ease',
                 customPaging: function(slider, i) {
-                    return $('<button type="button">'
-                                + '<span class="slick-dot-icon" aria-hidden="true"></span>'
-                                + '<span class="slick-sr-only">Go to slide ' + (i+1) + '</span>'
-                            + '</button>');
+                    return $('<button type="button">' +
+                               '<span class="slick-dot-icon" aria-hidden="true"></span>' +
+                               '<span class="slick-sr-only">Go to slide ' + (i+1) + '</span>' +
+                             '</button>');
                 },
                 dots: false,
                 dotsClass: 'slick-dots',
@@ -1173,13 +1173,13 @@
         if (_.options.infinite === true) {
             if (_.slideCount > _.options.slidesToShow) {
                 _.slideOffset = (_.slideWidth * _.options.slidesToShow) * -1;
-                coef = -1
+                coef = -1;
 
                 if (_.options.vertical === true && _.options.centerMode === true) {
                     if (_.options.slidesToShow === 2) {
                         coef = -1.5;
                     } else if (_.options.slidesToShow === 1) {
-                        coef = -2
+                        coef = -2;
                     }
                 }
                 verticalOffset = (verticalHeight * _.options.slidesToShow) * coef;
@@ -1390,7 +1390,7 @@
         _.updateSlideVisibility();
 
         if(_.options.accessibility != undefined) {
-            console.warn('accessibility setting is no longer supported.')
+            console.warn('accessibility setting is no longer supported.');
         }
 
         if(_.options.focusOnChange != undefined) {
@@ -2996,7 +2996,7 @@
                 .removeAttr('aria-hidden')
                 .find('a, input, button, select')
                     .removeAttr('tabindex');
-    }
+    };
 
     Slick.prototype.visibility = function() {
 
@@ -3034,5 +3034,7 @@
         }
         return _;
     };
+
+    console.log('ok');
 
 }));
