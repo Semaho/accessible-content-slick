@@ -2345,8 +2345,9 @@
             _.$slides
                 .eq(index)
                 .addClass('slick-center')
+                .attr('aria-hidden', 'false')
                 .attr('aria-label', function() {
-                    return $(this).attr('aria-label') + ' (centered)';
+                    return $(this).attr('aria-label') + ' (centered !)';
                 });
 
         } else {
@@ -2992,7 +2993,7 @@
                     .attr('tabindex', '-1');
 
         _.$slideTrack
-            .find('.slick-active')
+            .find('.slick-active, .slick-center')
                 .removeAttr('aria-hidden')
                 .find('a, input, button, select')
                     .removeAttr('tabindex');
