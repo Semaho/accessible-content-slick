@@ -2992,7 +2992,7 @@
                     .attr('tabindex', '-1');
 
         _.$slideTrack
-            .find('.slick-active')
+            .find('.slick-active, .slick-center')
                 .removeAttr('aria-hidden')
                 .find('a, input, button, select')
                     .removeAttr('tabindex');
