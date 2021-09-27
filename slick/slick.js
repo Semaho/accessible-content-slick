@@ -7,7 +7,7 @@
 |___/_|_|\___|_|\_(_)/ |___/
                    |__/
 
- Version: 1.8.1@accessible360.1
+ Version: 1.8.2@accessible360.1
   Author: Jason Webb (Accessible360)
  Website: https://accessible360.com
     Docs: https://accessible360.github.io/accessible-slick
