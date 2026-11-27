@@ -1,6 +1,6 @@
 {
   "name": "@semaho/accessible-content-slick",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "description": "the last (accessible) carousel you'll ever need",
   "main": "slick/slick.js",
   "repository": {

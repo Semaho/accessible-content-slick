@@ -7,7 +7,7 @@
 |___/_|_|\___|_|\_(_)/ |___/
                    |__/
 
- Version: 1.8.2@accessible360.1
+ Version: 1.8.3@accessible360.1
   Author: Jason Webb (Accessible360)
  Website: https://accessible360.com
     Docs: https://accessible360.github.io/accessible-slick
@@ -541,9 +541,30 @@
             _.$slider.addClass('slick-dotted');
 
             dot = $('<ul />').addClass(_.options.dotsClass);
+            dot.attr('role', 'tablist');
+
+            _.$slides.each(function(index) {
+                if (!this.id) {
+                    var slideId = 'slick-slide' + _.instanceUid + '-' + index;
+
+                    while (document.getElementById(slideId)) {
+                        slideId += '-';
+                    }
+
+                    $(this).attr('id', slideId);
+                }
+            });
 
             for (i = 0; i <= _.getDotCount(); i += 1) {
-                dot.append($('<li />').append(_.options.customPaging.call(this, _, i)));
+                dot.append(
+                    $('<li />')
+                        .attr('role', 'presentation')
+                        .append(_.options.customPaging.call(this, _, i))
+                        .find('button')
+                            .attr('role', 'tab')
+                            .attr('aria-controls', _.$slides.eq(Math.min(i * _.options.slidesToScroll, _.slideCount - 1)).attr('id'))
+                        .end()
+                );
             }
 
             _.$dots = dot.appendTo(_.options.appendDots);
@@ -2308,7 +2329,7 @@
                     _.$slides
                         .slice(index - centerOffset + evenCoef, index + centerOffset + 1)
                         .addClass('slick-active')
-                        .removeAttr('aria-hidden');
+                        .attr('aria-hidden', 'false');
 
                 } else {
 
@@ -2316,7 +2337,7 @@
                     allSlides
                         .slice(indexOffset - centerOffset + 1 + evenCoef, indexOffset + centerOffset + 2)
                         .addClass('slick-active')
-                        .removeAttr('aria-hidden');
+                        .attr('aria-hidden', 'false');
 
                 }
 
@@ -2357,13 +2378,13 @@
                 _.$slides
                     .slice(index, index + _.options.slidesToShow)
                     .addClass('slick-active')
-                    .removeAttr('aria-hidden');
+                    .attr('aria-hidden', 'false');
 
             } else if (allSlides.length <= _.options.slidesToShow) {
 
                 allSlides
                     .addClass('slick-active')
-                    .removeAttr('aria-hidden');
+                    .attr('aria-hidden', 'false');
 
             } else {
 
@@ -2375,14 +2396,14 @@
                     allSlides
                         .slice(indexOffset - (_.options.slidesToShow - remainder), indexOffset + remainder)
                         .addClass('slick-active')
-                        .removeAttr('aria-hidden');
+                        .attr('aria-hidden', 'false');
 
                 } else {
 
                     allSlides
                         .slice(indexOffset, indexOffset + _.options.slidesToShow)
                         .addClass('slick-active')
-                        .removeAttr('aria-hidden');
+                        .attr('aria-hidden', 'false');
 
                 }
 
@@ -2966,7 +2987,7 @@
                 .find('li')
                     .removeClass('slick-active')
                     .find('button')
-                        .removeAttr('aria-current')
+                        .attr('aria-selected', 'false')
                         .end()
                     .end();
 
@@ -2975,7 +2996,7 @@
                 .eq(Math.floor(_.currentSlide / _.options.slidesToScroll))
                     .addClass('slick-active')
                     .find('button')
-                        .attr('aria-current', true)
+                        .attr('aria-selected', 'true')
                         .end()
                     .end();
 
@@ -2994,7 +3015,7 @@
 
         _.$slideTrack
             .find('.slick-active, .slick-center')
-                .removeAttr('aria-hidden')
+                .attr('aria-hidden', 'false')
                 .find('a, input, button, select')
                     .removeAttr('tabindex');
     };
